@@ -1,4 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BoatRental.DAL.Enum
 {
@@ -6,9 +11,9 @@ namespace BoatRental.DAL.Enum
     {
         [Display(Name = "Jolle")]
         Dinghy,
-        [Display(Name = "Båt < 40 fot")]
-        Boat,
-        [Display(Name = "Båt >= 40 fot")]
-        Yahct
+        [Display(Name = "Segelbåt")]
+        SailBoat,
+        [Display(Name = "Yacht")]
+        Yacht
     }
 }

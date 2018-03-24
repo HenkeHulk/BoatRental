@@ -1,25 +1,28 @@
-﻿using BoatRental.DAL.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using BoatRental.DAL.Migrations;
+using BoatRental.DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BoatRental.DAL
 {
-    public class BoatRentalDbContext:DbContext
+    public class BoatRentalDbContext : DbContext
     {
-        public BoatRentalDbContext(DbContextOptions<BoatRentalDbContext> dbContextOptions) 
-            : base(dbContextOptions)
+        public BoatRentalDbContext() 
+            : base("name=BoatRental")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BoatRentalDbContext, Configuration>());
         }
 
-        public DbSet<Boat> Boats { get; set; }
-        public DbSet<Rental> Rentals { get; set; }
+        public virtual DbSet<Boat> Boats { get; set; }
+        public virtual DbSet<Rental> Rentals { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Boat>().ToTable
-
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
