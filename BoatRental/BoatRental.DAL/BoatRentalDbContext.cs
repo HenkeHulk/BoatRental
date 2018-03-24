@@ -16,5 +16,10 @@ namespace BoatRental.DAL
         public DbSet<Boat> Boats { get; set; }
         public DbSet<Rental> Rentals { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Boat>().ToTable
+
+        }
     }
 }
