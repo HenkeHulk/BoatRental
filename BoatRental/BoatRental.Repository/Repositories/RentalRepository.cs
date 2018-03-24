@@ -1,5 +1,6 @@
 ﻿using BoatRental.DAL;
 using BoatRental.Models;
+using BoatRental.Models.Enum;
 using BoatRental.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -56,9 +57,37 @@ namespace BoatRental.Repository.Repositories
             db.SaveChanges();
         }
 
+        public Decimal RentalCost(TimeSpan rentTime, double baseCost, double hourCost, BoatType boatType)
+        {
+            Decimal rentCost;
+            int hours = rentTime.Hours;
+            if (rentTime.Minutes > 0)
+                hours += 1;
+            if (boatType == BoatType.Dinghy)
+                rentCost = Convert.ToDecimal(baseCost + (hourCost * hours));
+            else if (boatType == BoatType.SailBoat)
+                rentCost = Convert.ToDecimal((baseCost * 1.2) + (hourCost * hours));
+            else
+                rentCost = Convert.ToDecimal((baseCost * 1.5) + (hourCost * hours));
+            return rentCost;
+        }
+
         public void Update(Rental entity)
         {
-            throw new NotImplementedException();
+            var existRental = Find(entity.Id);
+            if (existRental == null)
+                db.Rentals.Add(entity);
+            else
+            {
+                existRental.Id = entity.Id;
+                existRental.BoatNumber = entity.BoatNumber;
+                existRental.BookingNumber = entity.BookingNumber;
+                existRental.DeliveryDate = entity.DeliveryDate;
+                existRental.FilingDate = entity.FilingDate;
+                existRental.Cost = entity.Cost;
+                existRental.PersonalNumber = entity.PersonalNumber;
+            }
+            Save();
         }
     }
 }
