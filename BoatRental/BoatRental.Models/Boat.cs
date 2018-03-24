@@ -1,11 +1,11 @@
-﻿using BoatRental.DAL.Enum;
+﻿using BoatRental.Models.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoatRental.DAL.Models
+namespace BoatRental.Models
 {
     public class Boat
     {

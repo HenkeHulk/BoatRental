@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoatRental.DAL.Models
+namespace BoatRental.Models
 {
     public class Rental
     {

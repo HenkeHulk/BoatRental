@@ -1,7 +1,7 @@
 namespace BoatRental.DAL.Migrations
 {
-    using BoatRental.DAL.Enum;
-    using BoatRental.DAL.Models;
+    using BoatRental.Models;
+    using BoatRental.Models.Enum;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;

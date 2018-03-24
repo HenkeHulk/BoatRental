@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9FF018F4-A5A6-45ED-962C-C1ECC61C624E}</ProjectGuid>
+    <ProjectGuid>{F4D792EC-74FD-45EB-9F03-34BA51D7BB47}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BoatRental.DAL</RootNamespace>
-    <AssemblyName>BoatRental.DAL</AssemblyName>
+    <RootNamespace>BoatRental.Models</RootNamespace>
+    <AssemblyName>BoatRental.Models</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -47,28 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoatRentalDbContext.cs" />
-    <Compile Include="Migrations\201803241135131_Add-Migration -BoatRental-V1.cs" />
-    <Compile Include="Migrations\201803241135131_Add-Migration -BoatRental-V1.Designer.cs">
-      <DependentUpon>201803241135131_Add-Migration -BoatRental-V1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Enum\BoatType.cs" />
+    <Compile Include="Boat.cs" />
+    <Compile Include="Rental.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803241135131_Add-Migration -BoatRental-V1.resx">
-      <DependentUpon>201803241135131_Add-Migration -BoatRental-V1.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BoatRental.Models\BoatRental.Models.csproj">
-      <Project>{f4d792ec-74fd-45eb-9f03-34ba51d7bb47}</Project>
-      <Name>BoatRental.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

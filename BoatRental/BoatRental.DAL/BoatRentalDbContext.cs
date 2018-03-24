@@ -1,5 +1,5 @@
 ﻿using BoatRental.DAL.Migrations;
-using BoatRental.DAL.Models;
+using BoatRental.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

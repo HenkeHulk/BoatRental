@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoatRental.DAL.Enum
+namespace BoatRental.Models.Enum
 {
     public enum BoatType
     {
