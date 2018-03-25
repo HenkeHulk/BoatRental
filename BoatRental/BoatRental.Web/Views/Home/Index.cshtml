@@ -1,31 +1,115 @@
-﻿@{
+﻿@model BoatRental.Web.Models.IndexViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Båtuthyrning</h1>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+@if (Model.Rentals != null && Model.Rentals.Count() != 0)
+{
+    <div class="row">
+        <div class="col-sm-12 col-md-1 col-lg-1"></div>
+        <div class="col-sm-12 col-md-10 col-lg-10">
+            <h3>Uthyrningar</h3>
+            <a class="btn btn-sm btn-outline-success">Hyr Båt</a>
+            <br /><br />
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Bokningsnr</th>
+                        <th scope="col">Båtnr</th>
+                        <th scope="col">Personnummer</th>
+                        <th scope="col">Utlämningsdatum</th>
+                        <th scope="col">Återlämningsdatum</th>
+                        <th scope="col">Kostnad</th>
+                        <th scope="col">Ändra</th>
+                        <th scope="col">Lämna in</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in Model.Rentals)
+            {
+                <tr>
+                    <th>@booking.BookingNumber</th>
+                    <td>@booking.BoatNumber</td>
+                    <td>@booking.PersonalNumber</td>
+                    <td>@booking.DeliveryDate</td>
+                    <td>@booking.FilingDate</td>
+                    <td>@booking.Cost</td>
+                    <td><a class="btn btn-sm btn-outline-primary">Ändra</a></td>
+                    <td><a class="btn btn-sm btn-outline-primary">Lämna in</a></td>
+                </tr>
+    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12 col-md-1 col-lg-1"></div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12 col-md-1 col-lg-1"></div>
+        <div class="col-sm-12 col-md-10 col-lg-10">
+            <h3>Uthyrningar</h3>
+            <br />
+            <h5>Det finns inga registrerade uthyrningar</h5>
+            <br />
+            <a class="btn btn-sm btn-outline-success">Hyr Båt</a>
+        </div>
+        <div class="col-sm-12 col-md-1 col-lg-1"></div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+}
+<br />
+@if (Model.Boats != null && Model.Boats.Count() != 0)
+{
+    <div class="row">
+        <div class="col-sm-12 col-md-1 col-lg-1"></div>
+        <div class="col-sm-12 col-md-10 col-lg-10">
+            <h3>Båtar</h3>
+            <a class="btn btn-sm btn-outline-success">Ny Båt</a>
+            <br /><br />
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Båtnr</th>
+                        <th scope="col">Båttyp</th>
+                        <th scope="col">Bokad</th>
+                        <th>Ändra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var boat in Model.Boats)
+            {
+                <tr>
+                    <th>@boat.BoatNumber</th>
+                    <td>@boat.BoatTypeString</td>
+                    @if (boat.Booked)
+            {
+                <td>Ja</td>}
+    else
+    {
+        <td>Nej</td>}
+                    <td><a href="~/Home/Index" class="btn btn-sm btn-outline-primary">Ändra</a></td>
+                </tr>
+    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12 col-md-1 col-lg-1"></div>
     </div>
-</div>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12 col-md-1 col-lg-1"></div>
+        <div class="col-sm-12 col-md-10 col-lg-10">
+            <h3>Båtar</h3>
+            <br />
+            <h5>Det finns inga båtar</h5>
+        </div>
+        <div class="col-sm-12 col-md-1 col-lg-1"></div>
+    </div>
+}

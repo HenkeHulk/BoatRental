@@ -14,7 +14,7 @@ namespace BoatRental.DAL
         public BoatRentalDbContext() 
             : base("name=BoatRental")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BoatRentalDbContext, Configuration>());
+            Database.SetInitializer<BoatRentalDbContext>(new DropCreateDatabaseIfModelChanges<BoatRentalDbContext>());
         }
 
         public virtual DbSet<Boat> Boats { get; set; }

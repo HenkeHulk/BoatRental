@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BoatRental.Web.Helpers;
+using BoatRental.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,11 @@ namespace BoatRental.Web.Controllers
 {
     public class HomeController : Controller
     {
+        RentalHelper rentalHelper = new RentalHelper(); 
         public ActionResult Index()
         {
-            return View();
+            var model = rentalHelper.indexViewModel();
+            return View(model);
         }
     }
 }

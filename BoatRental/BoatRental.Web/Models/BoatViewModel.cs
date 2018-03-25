@@ -14,6 +14,8 @@ namespace BoatRental.Web.Models
 
         public BoatType BoatType { get; set; }
 
+        public string BoatTypeString { get; set; }
+
         public bool Booked { get; set; }
     }
 }
