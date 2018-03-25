@@ -83,6 +83,7 @@
   <ItemGroup>
     <Content Include="bin\Debug\BoatRental.DAL.dll" />
     <Content Include="bin\Debug\BoatRental.DAL.pdb" />
+    <Content Include="DbScripts\BoatRentalDBScript.sql" />
     <Content Include="obj\Debug\BoatRental.DAL.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\BoatRental.DAL.dll" />
     <Content Include="obj\Debug\BoatRental.DAL.pdb" />
