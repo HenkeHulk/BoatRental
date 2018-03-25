@@ -44,7 +44,6 @@ namespace BoatRental.Repository.Repositories
                 existRental.BoatNumber = entity.BoatNumber;
                 existRental.BookingNumber = entity.BookingNumber;
                 existRental.DeliveryDate = entity.DeliveryDate;
-                existRental.FilingDate = entity.FilingDate;
                 existRental.Cost = entity.Cost;
                 existRental.PersonalNumber = entity.PersonalNumber;
             }
@@ -61,14 +60,16 @@ namespace BoatRental.Repository.Repositories
         {
             Decimal rentCost;
             int hours = rentTime.Hours;
+            if (rentTime.Days != 0)
+                hours += 24 * rentTime.Days;
             if (rentTime.Minutes > 0)
                 hours += 1;
             if (boatType == BoatType.Dinghy)
                 rentCost = Convert.ToDecimal(baseCost + (hourCost * hours));
             else if (boatType == BoatType.SailBoat)
-                rentCost = Convert.ToDecimal((baseCost * 1.2) + (hourCost * hours));
+                rentCost = Convert.ToDecimal((baseCost * 1.2) + ((hourCost * 1.3) * hours));
             else
-                rentCost = Convert.ToDecimal((baseCost * 1.5) + (hourCost * hours));
+                rentCost = Convert.ToDecimal((baseCost * 1.5) + ((hourCost * 1.4) * hours));
             return rentCost;
         }
 
@@ -83,7 +84,6 @@ namespace BoatRental.Repository.Repositories
                 existRental.BoatNumber = entity.BoatNumber;
                 existRental.BookingNumber = entity.BookingNumber;
                 existRental.DeliveryDate = entity.DeliveryDate;
-                existRental.FilingDate = entity.FilingDate;
                 existRental.Cost = entity.Cost;
                 existRental.PersonalNumber = entity.PersonalNumber;
             }

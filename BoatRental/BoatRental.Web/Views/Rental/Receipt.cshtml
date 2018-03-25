@@ -1,0 +1,64 @@
+﻿@model BoatRental.Web.Models.RentalViewModel
+
+@{
+    ViewBag.Title = "Receipt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Receipt</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BoatNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BoatNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonalNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonalNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryDate)
+        </dd>
+
+        <dt>
+            Återlämningsdatum
+        </dt>
+
+        <dd>
+            @DateTime.Now.ToString()
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>

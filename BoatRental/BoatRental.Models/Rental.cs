@@ -18,8 +18,6 @@ namespace BoatRental.Models
 
         public DateTime DeliveryDate { get; set; }
 
-        public DateTime FilingDate { get; set; }
-
         public Decimal Cost { get; set; }
     }
 }

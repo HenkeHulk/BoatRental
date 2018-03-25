@@ -3,17 +3,53 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Båtuthyrning</h1>
+<div class="row">
+    <div class="col-sm-12 col-md-1 col-lg-1"></div>
+    <div class="col-sm-12 col-md-10 col-lg-10">
+        <div class="jumbotron">
+            <h1>Båtuthyrning</h1>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-1 col-lg-1"></div>
 </div>
-
+<div class="row">
+    <div class="col-sm-12 col-md-1 col-lg-1"></div>
+    <div class="col-sm-12 col-md-10 col-lg-10">
+        <h3>Prislista</h3>
+        <h5>Grundpris 500 kr</h5>
+        <h5>Timpris 100 kr</h5>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Bokningsnr</th>
+                    <th scope="col">Båtnr</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Jolle</th>
+                    <td>grundavgift + timpris * antal timmar </td>
+                </tr>
+                <tr>
+                    <th>Liten Segelbåt < 40 fot</th>
+                    <td>grundavgift * 1.2 + timpris * 1.3 * antal timmar</td>
+                </tr>
+                <tr>
+                    <th>Stor Segelbåt >= 40 fot</th>
+                    <td>grundavgift * 1.5 + timpris * 1.4 * antal timmar</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12 col-md-1 col-lg-1"></div>
+</div>
 @if (Model.Rentals != null && Model.Rentals.Count() != 0)
 {
     <div class="row">
         <div class="col-sm-12 col-md-1 col-lg-1"></div>
         <div class="col-sm-12 col-md-10 col-lg-10">
             <h3>Uthyrningar</h3>
-            <a class="btn btn-sm btn-outline-success">Hyr Båt</a>
+            <a href="~/Rental/Create" class="btn btn-sm btn-outline-success">Hyr Båt</a>
             <br /><br />
             <table class="table table-hover">
                 <thead class="thead-dark">
@@ -22,7 +58,6 @@
                         <th scope="col">Båtnr</th>
                         <th scope="col">Personnummer</th>
                         <th scope="col">Utlämningsdatum</th>
-                        <th scope="col">Återlämningsdatum</th>
                         <th scope="col">Kostnad</th>
                         <th scope="col">Ändra</th>
                         <th scope="col">Lämna in</th>
@@ -30,18 +65,22 @@
                 </thead>
                 <tbody>
                     @foreach (var booking in Model.Rentals)
-            {
-                <tr>
-                    <th>@booking.BookingNumber</th>
-                    <td>@booking.BoatNumber</td>
-                    <td>@booking.PersonalNumber</td>
-                    <td>@booking.DeliveryDate</td>
-                    <td>@booking.FilingDate</td>
-                    <td>@booking.Cost</td>
-                    <td><a class="btn btn-sm btn-outline-primary">Ändra</a></td>
-                    <td><a class="btn btn-sm btn-outline-primary">Lämna in</a></td>
-                </tr>
-    }
+                    {
+                        <tr>
+                            <th>@booking.BookingNumber</th>
+                            <td>@booking.BoatNumber</td>
+                            <td>@booking.PersonalNumber</td>
+                            <td>@booking.DeliveryDate</td>
+                            <td>@booking.Cost kr</td>
+                            @if (booking.Cost <= 0)
+                            {
+                                <td><a href="@Url.Action("Edit","Rental", new { id = booking.Id })" class="btn btn-sm btn-outline-primary">Ändra</a></td>
+                                <td><a href="@Url.Action("ReturnBoat","Rental", new { bookingNumber = booking.BookingNumber })" class="btn btn-sm btn-outline-primary">Lämna in</a></td> }
+                            else
+                            {
+                                <td>Inlämnad</td>}
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -57,7 +96,7 @@ else
             <br />
             <h5>Det finns inga registrerade uthyrningar</h5>
             <br />
-            <a class="btn btn-sm btn-outline-success">Hyr Båt</a>
+            <a href="~/Rental/Create" class="btn btn-sm btn-outline-success">Hyr Båt</a>
         </div>
         <div class="col-sm-12 col-md-1 col-lg-1"></div>
     </div>
@@ -69,7 +108,7 @@ else
         <div class="col-sm-12 col-md-1 col-lg-1"></div>
         <div class="col-sm-12 col-md-10 col-lg-10">
             <h3>Båtar</h3>
-            <a class="btn btn-sm btn-outline-success">Ny Båt</a>
+            <a href="~/Boat/Create" class="btn btn-sm btn-outline-success">Ny Båt</a>
             <br /><br />
             <table class="table table-hover">
                 <thead class="thead-dark">
@@ -82,19 +121,19 @@ else
                 </thead>
                 <tbody>
                     @foreach (var boat in Model.Boats)
-            {
-                <tr>
-                    <th>@boat.BoatNumber</th>
-                    <td>@boat.BoatTypeString</td>
-                    @if (boat.Booked)
-            {
-                <td>Ja</td>}
-    else
-    {
-        <td>Nej</td>}
-                    <td><a href="~/Home/Index" class="btn btn-sm btn-outline-primary">Ändra</a></td>
-                </tr>
-    }
+                    {
+                        <tr>
+                            <td>@boat.BoatNumber</td>
+                            <td>@boat.BoatTypeString</td>
+                            @if (boat.Booked)
+                            {
+                                <td>Ja</td>}
+                            else
+                            {
+                                <td>Nej</td>}
+                            <td><a href="@Url.Action("Edit", "Boat", new { boatNumber = boat.BoatNumber })" class="btn btn-sm btn-outline-primary">Ändra</a></td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -109,6 +148,7 @@ else
             <h3>Båtar</h3>
             <br />
             <h5>Det finns inga båtar</h5>
+            <a href="~/Boat/Create" class="btn btn-sm btn-outline-success">Ny Båt</a>
         </div>
         <div class="col-sm-12 col-md-1 col-lg-1"></div>
     </div>
